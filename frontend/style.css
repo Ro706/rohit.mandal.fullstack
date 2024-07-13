@@ -1,0 +1,68 @@
+/* style.css */
+.body{
+    padding: 30px ;
+    margin: 30px;
+}
+/* Reset default margin and padding */
+h1, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Center the h1 element */
+h1.center {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333; /* Adjust color as needed */
+}
+
+nav ul{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+nav li{
+    height: 50px;
+    list-style: none;
+}
+li i{
+    padding: 10px;
+}
+/* Style the social media list */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li.media {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555; /* Adjust color as needed */
+}
+
+/* Add icons to list items */
+li.media i {
+    margin-right: 10px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+/* Style specific icons */
+.fa-phone {
+    color: #007bff; /* Blue color for phone icon */
+}
+
+.fa-envelope {
+    color: #dc3545; /* Red color for envelope icon */
+}
+
+.fa-linkedin, .fa-github {
+    color: #28a745; /* Green color for LinkedIn and GitHub icons */
+}
+.body p{
+    width:fit-content;
+}
