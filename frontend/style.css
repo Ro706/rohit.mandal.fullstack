@@ -1,4 +1,8 @@
 /* style.css */
+body{
+    color:white;
+    background-color: #100f0f;
+}
 .body{
     padding: 30px ;
     margin: 30px;
