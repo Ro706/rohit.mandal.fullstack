@@ -1,11 +1,14 @@
 /* style.css */
 body{
     color:white;
-    background-color: #100f0f;
+    background-color: #070707;
 }
 .body{
     padding: 30px ;
     margin: 30px;
+}
+a{
+    color: #007bff;
 }
 /* Reset default margin and padding */
 h1, ul {
@@ -56,7 +59,7 @@ li.media i {
 }
 
 /* Style specific icons */
-.fa-phone {
+.fa-linkedin, .fa-phone {
     color: #007bff; /* Blue color for phone icon */
 }
 
@@ -64,7 +67,7 @@ li.media i {
     color: #dc3545; /* Red color for envelope icon */
 }
 
-.fa-linkedin, .fa-github {
+.fa-github {
     color: #28a745; /* Green color for LinkedIn and GitHub icons */
 }
 .body p{
