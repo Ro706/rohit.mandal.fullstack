@@ -1,15 +1,17 @@
-/* style.css */
-body{
-    color:white;
+body {
+    color: white;
     background-color: #070707;
 }
-.body{
-    padding: 30px ;
+
+.body {
+    padding: 30px;
     margin: 30px;
 }
-a{
+
+a {
     color: #007bff;
 }
+
 /* Reset default margin and padding */
 h1, ul {
     margin: 0;
@@ -24,21 +26,24 @@ h1.center {
     color: #333; /* Adjust color as needed */
 }
 
-nav ul{
+nav ul {
     width: 100%;
     list-style: none;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
 }
 
-nav li{
+nav li {
     height: 50px;
     list-style: none;
 }
-li i{
+
+li i {
     padding: 10px;
 }
+
 /* Style the social media list */
 ul {
     list-style: none;
@@ -70,6 +75,69 @@ li.media i {
 .fa-github {
     color: #28a745; /* Green color for LinkedIn and GitHub icons */
 }
-.body p{
-    width:fit-content;
+
+.body p {
+    width: fit-content;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    h1.center {
+        font-size: 22px;
+    }
+
+    .body {
+        padding: 25px;
+        margin: 25px;
+    }
+}
+
+@media (max-width: 992px) {
+    h1.center {
+        font-size: 20px;
+    }
+
+    .body {
+        padding: 20px;
+        margin: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1.center {
+        font-size: 18px;
+    }
+
+    .body {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    nav li {
+        height: auto;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    h1.center {
+        font-size: 16px;
+    }
+
+    .body {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    li.media {
+        font-size: 14px;
+    }
+
+    li.media i {
+        font-size: 16px;
+    }
 }
