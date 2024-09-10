@@ -25,6 +25,7 @@
         document.getElementById("username-display").innerText = username ? `Welcome, ${username}` : "Welcome, Guest";
 
         document.getElementById("logout").addEventListener("click", function() {
+            alert(`You have been logged out successfully, ${username}`);
             sessionStorage.setItem("username", username);
             sessionStorage.setItem("password", password);
             sessionStorage.setItem("email", email);
