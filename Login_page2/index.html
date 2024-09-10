@@ -8,7 +8,7 @@
 </head>
 <body>
     <img src="https://static.vecteezy.com/system/resources/previews/014/385/591/original/esport-gaming-logo-design-png.png" alt="Err to load an image">
-    <!-- Login -->
+    
     <h1>Login</h1>
     <form id="loginForm">
         <input type="text" placeholder="Username" id="username"><br>
@@ -23,7 +23,7 @@
     <br><br><br>
     <p id="message"></p>
 
-    <!-- Modal for resetting password -->
+    
     <div id="forgot-password-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -51,7 +51,7 @@
         var flag = false;
 
         function usera(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
+            event.preventDefault();
             if (user === username.value && passwd === password.value) {
                 message.innerHTML = "<h1>Login successful</h1>";
                 flag = true;
@@ -65,7 +65,7 @@
 
         form.addEventListener("submit", usera);
 
-        // Modal functionality for forgot password
+
         const forgotPasswordLink = document.getElementById("forgot-password-link"),
               forgotPasswordModal = document.getElementById("forgot-password-modal"),
               closeModal = document.getElementsByClassName("close")[0];
