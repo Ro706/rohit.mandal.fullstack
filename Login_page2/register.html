@@ -11,7 +11,7 @@
     <h1>Register</h1>
     <form id="registerForm">
         <input type="text" placeholder="Username" id="username"><br>
-        <input type="text" placeholder="Email"><br>
+        <input type="text" placeholder="Email" id="email"><br>
         <input type="password" placeholder="Password" id="password"><br>
         <input type="password" placeholder="Confirm Password" id="cpassword"><br>
         <input type="submit" value="Register" id="submit">
@@ -19,14 +19,15 @@
     <script>
         var link = "./index.html";
         const username = document.getElementById("username"),
+              email = document.getElementById("email"),
               password = document.getElementById("password"),
               cpassword = document.getElementById("cpassword"),
-              submit = document.getElementById("submit"),
               form = document.getElementById("registerForm");
 
         function reg(event) {
             event.preventDefault(); // Prevent form submission
             sessionStorage.setItem("username", username.value);
+            sessionStorage.setItem("email", email.value);
             if (password.value !== cpassword.value) {
                 alert("Password does not match");
             } else {  

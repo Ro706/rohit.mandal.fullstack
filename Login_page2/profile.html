@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li id="username-display"></li>
+            <li><a href="#" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="profile-container">
+        <h1>Profile Page</h1>
+        <div class="profile-info">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic">
+            <div class="profile-details">
+                <p><strong>Username:</strong> <span id="username"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>Password:</strong> <span id="password"></span></p>
+                <button id="update-password-btn">Update Password</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for updating password -->
+    <div id="update-password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Update Password</h2>
+            <form id="update-password-form">
+                <input type="password" placeholder="New Password" id="new-password"><br>
+                <input type="password" placeholder="Confirm New Password" id="confirm-new-password"><br>
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Assuming the username, email, and password are stored in sessionStorage
+        var username = sessionStorage.getItem("username");
+        var email = sessionStorage.getItem("email");
+        var password = sessionStorage.getItem("password");
+        sessionStorage.setItem("username", username);
+        sessionStorage.setItem("email", email);
+        document.getElementById("username-display").innerText = username ? `Welcome, ${username}` : "Welcome, Guest";
+        document.getElementById("username").innerText = username ? username : "Guest";
+        document.getElementById("email").innerText = email ? email : "Not provided";
+        document.getElementById("password").innerText = password ? password : "Not provided";
+
+        document.getElementById("logout").addEventListener("click", function() {
+            window.location.assign("index.html");
+        });
+
+        // Modal functionality
+        var modal = document.getElementById("update-password-modal");
+        var btn = document.getElementById("update-password-btn");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.getElementById("update-password-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var newPassword = document.getElementById("new-password").value;
+            var confirmNewPassword = document.getElementById("confirm-new-password").value;
+
+            if (newPassword !== confirmNewPassword) {
+                alert("Passwords do not match");
+            } else {
+                sessionStorage.setItem("password", newPassword);
+                document.getElementById("password").innerText = newPassword;
+                alert("Password updated successfully");
+                modal.style.display = "none";
+                sessionStorage.setItem("password", newPassword);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="https://static.vecteezy.com/system/resources/previews/014/385/591/original/esport-gaming-logo-design-png.png" alt="Err to load an image">
+    <!-- Login -->
+    <h1>Login</h1>
+    <form id="loginForm">
+        <input type="text" placeholder="Username" id="username"><br>
+        <input type="password" placeholder="Password" id="password"><br>
+        <input type="submit" value="Login" id="submit">
+    </form>
+    <span>
+        <br><br><br><br><br><br>
+        <h3>If you don't have an account then <a href="register.html">Register</a></h3>
+    </span>
+    <br><br><br>
+    <p id="message"></p>
+
+    <script>
+        const username = document.getElementById("username"),
+              password = document.getElementById("password"),
+              submit = document.getElementById("submit"),
+              message = document.getElementById("message"),
+              form = document.getElementById("loginForm");
+
+        var user = sessionStorage.getItem("username");
+        var passwd = sessionStorage.getItem("password");
+        var Email = sessionStorage.getItem("Email");
+        var link = "./home.html";
+        var flag = false;
+
+        function usera(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            if (user === username.value && passwd === password.value) {
+                message.innerHTML = "<h1>Login successful</h1>";
+                flag = true;
+            } else {
+                message.innerHTML = "<h1>Login failed</h1>";
+            }
+            if (flag === true) {
+                window.location.assign(link);
+            }
+        }
+        sessionStorage.setItem("username", user);
+        sessionStorage.setItem("password", passwd);
+        sessionStorage.setItem("Email", Email);
+        form.addEventListener("submit", usera);
+    </script>
+</body>
+</html>
