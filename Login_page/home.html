@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>home page</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li id="username-display"></li>
+            <li><a href="./index.html" id="logout">Logout</a></li>
+        </ul>
+    </nav>
+    <h1>This is a home page</h1>
+    <script>
+        // Assuming the username is stored in sessionStorage
+        var username = sessionStorage.getItem("username");
+        document.getElementById("username-display").innerText = username ? `Welcome, ${username}` : "Welcome, Guest";
+
+        document.getElementById("logout").addEventListener("click", function() {
+            sessionStorage.clear();
+            window.location.assign("login.html");
+        });
+    </script>
+</body>
+</html>
