@@ -18,9 +18,24 @@
     <span>
         <br><br><br><br><br><br>
         <h3>If you don't have an account then <a href="register.html">Register</a></h3>
+        <h3><button id="forgot-password-link">Forgot Password?</button></h3>
     </span>
     <br><br><br>
     <p id="message"></p>
+
+    <!-- Modal for resetting password -->
+    <div id="forgot-password-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Reset Password</h2>
+            <form id="reset-password-form">
+                <input type="text" placeholder="Username" id="reset-username"><br>
+                <input type="password" placeholder="New Password" id="new-password"><br>
+                <input type="password" placeholder="Confirm New Password" id="confirm-new-password"><br>
+                <input type="submit" value="Reset">
+            </form>
+        </div>
+    </div>
 
     <script>
         const username = document.getElementById("username"),
@@ -31,7 +46,7 @@
 
         var user = sessionStorage.getItem("username");
         var passwd = sessionStorage.getItem("password");
-        var Email = sessionStorage.getItem("Email");
+        var email = sessionStorage.getItem("email");
         var link = "./home.html";
         var flag = false;
 
@@ -47,10 +62,54 @@
                 window.location.assign(link);
             }
         }
-        sessionStorage.setItem("username", user);
-        sessionStorage.setItem("password", passwd);
-        sessionStorage.setItem("Email", Email);
+
         form.addEventListener("submit", usera);
+
+        // Modal functionality for forgot password
+        const forgotPasswordLink = document.getElementById("forgot-password-link"),
+              forgotPasswordModal = document.getElementById("forgot-password-modal"),
+              closeModal = document.getElementsByClassName("close")[0];
+
+        forgotPasswordLink.onclick = function() {
+            forgotPasswordModal.style.display = "block";
+        }
+
+        closeModal.onclick = function() {
+            forgotPasswordModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == forgotPasswordModal) {
+                forgotPasswordModal.style.display = "none";
+            }
+        }
+
+        function validatePassword(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_$])[A-Za-z\d_$]{8,16}$/;
+            return regex.test(password);
+        }
+
+        document.getElementById("reset-password-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var resetUsername = document.getElementById("reset-username").value;
+            var newPassword = document.getElementById("new-password").value;
+            var confirmNewPassword = document.getElementById("confirm-new-password").value;
+
+            if (newPassword !== confirmNewPassword) {
+                alert("Passwords do not match");
+            } else if (!validatePassword(newPassword)) {
+                alert("Password must be 8-16 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character (_ or $).");
+            } else {
+                var storedUsername = sessionStorage.getItem("username");
+                if (resetUsername === storedUsername) {
+                    sessionStorage.setItem("password", newPassword);
+                    alert("Password reset successfully");
+                    forgotPasswordModal.style.display = "none";
+                } else {
+                    alert("Username not found");
+                }
+            }
+        });
     </script>
 </body>
 </html>

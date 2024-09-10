@@ -35,8 +35,8 @@
             <span class="close">&times;</span>
             <h2>Update Password</h2>
             <form id="update-password-form">
-                <input type="password" placeholder="New Password" id="new-password"><br>
-                <input type="password" placeholder="Confirm New Password" id="confirm-new-password"><br>
+                <input type="password" placeholder="New Password" id="new-password" required><br>
+                <input type="password" placeholder="Confirm New Password" id="confirm-new-password" required><br>
                 <input type="submit" value="Update">
             </form>
         </div>
@@ -47,8 +47,7 @@
         var username = sessionStorage.getItem("username");
         var email = sessionStorage.getItem("email");
         var password = sessionStorage.getItem("password");
-        sessionStorage.setItem("username", username);
-        sessionStorage.setItem("email", email);
+
         document.getElementById("username-display").innerText = username ? `Welcome, ${username}` : "Welcome, Guest";
         document.getElementById("username").innerText = username ? username : "Guest";
         document.getElementById("email").innerText = email ? email : "Not provided";
@@ -77,6 +76,11 @@
             }
         }
 
+        function validatePassword(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_$])[A-Za-z\d_$]{8,16}$/;
+            return regex.test(password);
+        }
+
         document.getElementById("update-password-form").addEventListener("submit", function(event) {
             event.preventDefault();
             var newPassword = document.getElementById("new-password").value;
@@ -84,12 +88,13 @@
 
             if (newPassword !== confirmNewPassword) {
                 alert("Passwords do not match");
+            } else if (!validatePassword(newPassword)) {
+                alert("Password must be 8-16 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character (_ or $).");
             } else {
                 sessionStorage.setItem("password", newPassword);
                 document.getElementById("password").innerText = newPassword;
                 alert("Password updated successfully");
                 modal.style.display = "none";
-                sessionStorage.setItem("password", newPassword);
             }
         });
     </script>

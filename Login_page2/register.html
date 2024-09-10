@@ -10,10 +10,10 @@
     <img src="https://static.vecteezy.com/system/resources/previews/014/385/591/original/esport-gaming-logo-design-png.png" alt="Err to load an image">
     <h1>Register</h1>
     <form id="registerForm">
-        <input type="text" placeholder="Username" id="username"><br>
-        <input type="text" placeholder="Email" id="email"><br>
-        <input type="password" placeholder="Password" id="password"><br>
-        <input type="password" placeholder="Confirm Password" id="cpassword"><br>
+        <input type="text" placeholder="Username" id="username" required><br>
+        <input type="text" placeholder="Email" id="email" required><br>
+        <input type="password" placeholder="Password" id="password" required><br>
+        <input type="password" placeholder="Confirm Password" id="cpassword" required><br>
         <input type="submit" value="Register" id="submit">
     </form>
     <script>
@@ -24,17 +24,30 @@
               cpassword = document.getElementById("cpassword"),
               form = document.getElementById("registerForm");
 
+        function validatePassword(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_$])[A-Za-z\d_$]{8,16}$/;
+            return regex.test(password);
+        }
+
         function reg(event) {
             event.preventDefault(); // Prevent form submission
+            if (!username.value || !email.value || !password.value || !cpassword.value) {
+                alert("All fields are mandatory");
+                return;
+            }
+            if (password.value !== cpassword.value) {
+                alert("Passwords do not match");
+                return;
+            }
+            if (!validatePassword(password.value)) {
+                alert("Password must be 8-16 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character (_ or $).");
+                return;
+            }
             sessionStorage.setItem("username", username.value);
             sessionStorage.setItem("email", email.value);
-            if (password.value !== cpassword.value) {
-                alert("Password does not match");
-            } else {  
-                sessionStorage.setItem("password", password.value);
-                window.alert("Registered Successfully");
-                window.location.assign(link);
-            }
+            sessionStorage.setItem("password", password.value);
+            window.alert("Registered Successfully");
+            window.location.assign(link);
         }
 
         form.addEventListener("submit", reg);
